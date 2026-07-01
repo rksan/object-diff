@@ -8,7 +8,10 @@
     "noEmit": false,
     "rootDir": "./src",
     "outDir": "./dist",
-    "declaration": false,
-    "removeComments": true
+    "declaration": true,
+    "declarationMap": true,
+    "declarationDir": "./dist",
+    "emitDeclarationOnly": true,
+    "removeComments": false
   }
 }

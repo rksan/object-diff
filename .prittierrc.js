@@ -4,7 +4,7 @@ module.exports = {
    * 折返しをする文字数
    * @see https://prettier.io/docs/en/options.html#print-width
    */
-  printWidth: 80,
+  printWidth: 120,
 
   /**
    * 末尾のカンマ

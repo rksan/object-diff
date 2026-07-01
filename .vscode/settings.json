@@ -5,7 +5,7 @@
   "editor.formatOnPaste": true, // ペースト時
   "editor.formatOnType": true, // 文字入力時
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true // ファイル保存時に ESLint でフォーマット
+    "source.fixAll.eslint": "explicit"
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode", // デフォルトフォーマッターをPrettierに指定
   // [eslint]
