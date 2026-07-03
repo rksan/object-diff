@@ -11,7 +11,7 @@
 
 ```ts
 // [TypeScript]
-import ObjectDiff from "@rksan/ObjectDiff";
+import ObjectDiff from "@rksan/object-diff";
 
 const old = {
   // a: "add-property",
