@@ -10,9 +10,9 @@
     "prebuild:dts": "rm -rf dist  && rm -rf types-defines",
     "build:dts": "tsc -p ./tsconfig.build-type.json && tsc-alias -p ./tsconfig.build-type.json",
     "build:ts": "tsc -p ./tsconfig.build.json && tsc-alias -p ./tsconfig.build.json",
-    "prebuild:browserify": "rm -rf browser",
-    "build:browserify": "node ./node_modules/browserify/bin/cmd.js ./dist/index.js -o ./browser/object-diff.js",
-    "build:browserify:min": "node ./node_modules/browserify/bin/cmd.js ./dist/index.js --debug | terser -c -m --source-map \"content=inline,url=inline\" -o ./browser/object-diff.min.js",
+    "prebuild:browserify": "rm -rf bundle",
+    "build:browserify": "node ./node_modules/browserify/bin/cmd.js ./dist/index.js -o ./bundle/object-diff.js",
+    "build:browserify:min": "node ./node_modules/browserify/bin/cmd.js ./dist/index.js --debug | terser -c -m --source-map \"content=inline,url=inline\" -o ./bundle/object-diff.min.js",
     "build": "npm run build:dts && npm run build:ts && npm run build:browserify && npm run build:browserify:min"
   },
   "devDependencies": {
