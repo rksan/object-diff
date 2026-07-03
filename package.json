@@ -1,12 +1,20 @@
 {
   "name": "@rksan/object-diff",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "files": [
+    "./dist",
+    "README.md",
+    "LICENCE"
+  ],
   "scripts": {
+    "/-/-/ init /-/-/-/": "",
     "tsc:init": "tsc --init",
+    "/-/-/-/ test /-/-/-/": "",
     "pretest": "rm -rf .nyc_output && rm -rf tsconfig.tsnode.json && tsc -p ./tsconfig.build.json --showConfig > tsconfig.tsnode.json",
     "test": "nyc ts-mocha --recursive --paths -p ./tsconfig.tsnode.json test/**/*.spec.ts",
     "precoverage": "rm -rf coverage && mkdir coverage",
     "coverage": "npm run test && nyc report --reporter=lcovonly",
+    "/-/-/-/ build /-/-/-/": "",
     "prebuild:dts": "rm -rf dist  && rm -rf types-defines",
     "build:dts": "tsc -p ./tsconfig.build-type.json && tsc-alias -p ./tsconfig.build-type.json",
     "build:ts": "tsc -p ./tsconfig.build.json && tsc-alias -p ./tsconfig.build.json",
@@ -44,6 +52,6 @@
     "typescript": "^5.9.3"
   },
   "main": "dist/index.js",
-  "types": "types-defines/index.d.ts",
+  "types": "dist/index.d.ts",
   "license": "MIT"
 }
