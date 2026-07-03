@@ -62,7 +62,6 @@ const testStrict = (options: { strict?: boolean }) => {
       ];
       const diff = controller.diff({ old, now });
       if (diff) {
-        console.log("diff", diff);
         assert.isOk(_compare(diff.add, [now[0], now[2]]), "diff.add");
         assert.isOk(diff.chg === undefined, "diff.chg");
         assert.isOk(_compare(diff.del, [old[1], old[2]]), "diff.del");
