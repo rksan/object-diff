@@ -294,12 +294,12 @@ module.exports = ObjectDiff;
 
 },{"./util":3}],2:[function(require,module,exports){
 "use strict";
-/*! object-diff v1.0.0 @license MIT @author (c) 2026 rksan https://github.com/rksan */
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 const ObjectDiff_1 = __importDefault(require("./ObjectDiff"));
-module.exports = ObjectDiff_1.default;
+Object.assign(window, { ObjectDiff: ObjectDiff_1.default });
 
 },{"./ObjectDiff":1}],3:[function(require,module,exports){
 "use strict";
