@@ -1,8 +1,7 @@
 # Object-Diff
 
-- node
-- mjs
-- cjs
+- node(cjs)
+- browserijy(js)
 
 # usage
 
@@ -239,7 +238,7 @@ const result = ObjectDiff({ ignore: ["white-space"] }).diff({ old, now });
 console.log(result); // -> false
 ```
 
-##### `"case-insensitive"`
+###### `"case-insensitive"`
 
 小文字・大文字の差異を無視
 
@@ -314,20 +313,57 @@ if(result){
 
 #### `returns`
 
-比較結果のオブジェクト
+`false` または 比較結果のオブジェクト
 
 - `@type {ObjectDiff.Result}`
 
 ## `ObjectDiff.Result`
 
+`false` または 比較結果のオブジェクト
+
+- `false` 差分なし
+- `object` 差分あり
+
 ```ts
-const result: {
-  add?: any;
-  chg?: any;
-  del?: any;
-  old?: any;
-  now?: any;
-} = { ... };
+const result:
+  | false
+  | {
+      add?: any;
+      chg?: any;
+      del?: any;
+      old?: any;
+      now?: any;
+    };
+```
+
+```ts
+// [example.ts]
+const result = ctrl.diff({ old, now });
+
+if (result === false) {
+  // no diff.
+}
+```
+
+```ts
+// [example.ts]
+const result = ctrl.diff({ old, now });
+
+if (result) {
+  // exist diff.
+} else {
+  // no diff.
+}
+```
+
+```ts
+// [example.ts]
+const result = ctrl.diff({ old, now });
+
+// ❌ Invalid if statement
+if (result === true) {
+  // It is not accurate.
+}
 ```
 
 ### `properties`
@@ -337,6 +373,45 @@ const result: {
 - `@type {any} del?` 削除された要素
 - `@type {any} old?` 旧要素の内、変化がある要素
 - `@type {any} now?` 新要素の内、変化がある要素
+
+```ts
+// [example.ts]
+
+// ... ( omission ) ...
+
+const result = ctrl.diff({ old, now });
+
+if (result) {
+  // exist diff.
+  const { add, chg, del, old, now } = result;
+
+  // ⚠ warn.
+  // Since `boolean` and `null` are permitted as element values,
+  // you must use `undefined` to determine whether a value exists.
+  if (add === undefined) {
+    // no added elements.
+  } else {
+    // added elements.
+  }
+
+  if (chg === undefined) {
+    // no changed elements.
+  } else {
+    // changed elements.
+  }
+
+  if (del === undefined) {
+    // no deleted elements.
+  } else {
+    // deleted elements.
+  }
+
+  // ❌ Unsupported if statement
+  if (add) {
+    // It is not accurate.
+  }
+}
+```
 
 # history
 
