@@ -148,6 +148,8 @@ declare namespace ObjectDiff {
 
   type Static = Fn & Obj;
 
+  type Controller = Detail & Any;
+
   /**
    * 差分比較関数を操作するオブジェクト
    * @interface
@@ -200,6 +202,6 @@ type ObjectDiff = ((options: {
     output?: ObjectDiff.Output;
     strict?: boolean;
     ignore?: ObjectDiff.Ignore[];
-  }) => ObjectDiff.Detail | ObjectDiff.Any);
+  }) => ObjectDiff.Controller);
 
 export = ObjectDiff;

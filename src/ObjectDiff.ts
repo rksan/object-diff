@@ -8,7 +8,7 @@ const ObjectDiff: ObjectDiff = (options?: {
   output?: ObjectDiff.Output;
   strict?: boolean;
   ignore?: ObjectDiff.Ignore[];
-}): ObjectDiff.Detail | ObjectDiff.Any => {
+}): ObjectDiff.Controller => {
   const { output, strict, ignore } = options || {};
 
   const _DETAIL: "detail" = "detail";

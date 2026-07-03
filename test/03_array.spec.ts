@@ -6,7 +6,7 @@ import ObjectDiff from "@/index";
 
 const testStrict = (options: { strict?: boolean }) => {
   const { strict } = options || { strict: false };
-  const od = ObjectDiff({ strict });
+  const controller = ObjectDiff({ strict });
 
   const _compare = (diff: any, org: any) =>
     JSON.stringify(diff) == JSON.stringify(org);
@@ -27,7 +27,7 @@ const testStrict = (options: { strict?: boolean }) => {
           ["1", "2", "3"],
         ];
       }
-      const diff = od.diff({ old, now });
+      const diff = controller.diff({ old, now });
 
       assert.isFalse(diff, "equal fail.");
     });
@@ -35,7 +35,7 @@ const testStrict = (options: { strict?: boolean }) => {
       let old, now;
       old = [2, 3, 4, 5];
       now = [1, 2, 4, 6, 7];
-      const diff = od.diff({ old, now });
+      const diff = controller.diff({ old, now });
       if (diff) {
         assert.isOk(_compare(diff.add, [1, 6, 7]), "diff.add");
         assert.isOk(diff.chg === undefined, "diff.chg");
@@ -60,7 +60,7 @@ const testStrict = (options: { strict?: boolean }) => {
         /* c: "string" }, */
         { d: { e: null } },
       ];
-      const diff = od.diff({ old, now });
+      const diff = controller.diff({ old, now });
       if (diff) {
         console.log("diff", diff);
         assert.isOk(_compare(diff.add, [now[0], now[2]]), "diff.add");

@@ -6,7 +6,7 @@ import ObjectDiff from "@/index";
 
 const testStrict = (options: { strict?: boolean }) => {
   const { strict } = options || { strict: false };
-  const od = ObjectDiff({ strict });
+  const controller = ObjectDiff({ strict });
 
   const _compare = (diff: any, org: any) =>
     JSON.stringify(diff) == JSON.stringify(org);
@@ -18,7 +18,7 @@ const testStrict = (options: { strict?: boolean }) => {
       old = {};
       now = {};
 
-      const diff = od.diff({ old, now });
+      const diff = controller.diff({ old, now });
       assert.isFalse(diff, "equal fail.");
     });
     it("equal", () => {
@@ -32,7 +32,7 @@ const testStrict = (options: { strict?: boolean }) => {
         now = { a: "1", b: "b", c: "true", d: "null", e: { f: "true" } };
       }
 
-      const diff = od.diff({ old, now });
+      const diff = controller.diff({ old, now });
       assert.isFalse(diff, "equal fail.");
     });
     it("diff-nest", () => {
@@ -40,7 +40,7 @@ const testStrict = (options: { strict?: boolean }) => {
       old = { a: { /*    */ c: null, d: null, e: null } };
       now = { a: { b: null, c: "aa", /*    */ e: null } };
 
-      const diff = od.diff({ old, now });
+      const diff = controller.diff({ old, now });
       if (diff) {
         assert.isOk(_compare(diff.add, { a: { b: now.a.b } }), "diff.add");
         assert.isOk(_compare(diff.chg, { a: { c: now.a.c } }), "diff.chg");
@@ -68,7 +68,7 @@ const testStrict = (options: { strict?: boolean }) => {
       };
       now = { a: 1, b: "chg", d: null, e: { f: null }, h: [1, 2, 3] };
 
-      const diff = od.diff({ old, now });
+      const diff = controller.diff({ old, now });
 
       if (diff) {
         assert.isOk(_compare(diff.add.a, now.a), "diff.add");

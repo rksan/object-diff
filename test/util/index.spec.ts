@@ -3,7 +3,7 @@ import { assert } from "chai";
 
 // test target
 import type ObjectDiff from "@/ObjectDiff";
-import util from "../../src/util";
+import util from "@/util";
 
 describe("util.ts", () => {
   it("util.hasLeastOne()", () => {

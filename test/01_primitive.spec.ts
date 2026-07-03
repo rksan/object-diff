@@ -6,7 +6,7 @@ import ObjectDiff from "@/index";
 
 const testStrict = (options: { strict?: boolean }) => {
   const { strict } = options || { strict: false };
-  const od = ObjectDiff({ strict });
+  const controller = ObjectDiff({ strict });
 
   describe("null", () => {
     it("equal", () => {
@@ -18,13 +18,13 @@ const testStrict = (options: { strict?: boolean }) => {
         old = null;
         now = "null";
       }
-      const diff = od.diff({ old, now });
+      const diff = controller.diff({ old, now });
       assert.isFalse(diff, "equal fail.");
     });
     it("add", () => {
       const old = undefined;
       const now = null;
-      const diff = od.diff({ old, now });
+      const diff = controller.diff({ old, now });
       if (diff) {
         console.log("diff", diff);
         assert.isOk(diff.add === now, "diff.add");
@@ -39,7 +39,7 @@ const testStrict = (options: { strict?: boolean }) => {
     it("delete", () => {
       const old = null;
       const now = undefined;
-      const diff = od.diff({ old, now });
+      const diff = controller.diff({ old, now });
       if (diff) {
         assert.isOk(diff.add === undefined, "diff.add");
         assert.isOk(diff.chg === undefined, "diff.chg");
@@ -53,7 +53,7 @@ const testStrict = (options: { strict?: boolean }) => {
     it("change", () => {
       const old = 1;
       const now = null;
-      const diff = od.diff({ old, now });
+      const diff = controller.diff({ old, now });
       if (diff) {
         assert.isOk(diff.add === undefined, "diff.add");
         assert.isOk(diff.chg === now, "diff.chg");
@@ -69,13 +69,13 @@ const testStrict = (options: { strict?: boolean }) => {
     it("equal", () => {
       const old = "string1";
       const now = "string1";
-      const diff = od.diff({ old, now });
+      const diff = controller.diff({ old, now });
       assert.isFalse(diff, "equal fail.");
     });
     it("diff", () => {
       const old = "string1";
       const now = "string2";
-      const diff = od.diff({ old, now });
+      const diff = controller.diff({ old, now });
       if (diff) {
         assert.isOk(diff.add === undefined, "diff.add");
         assert.isOk(diff.chg === now, "diff.chg");
@@ -97,7 +97,7 @@ const testStrict = (options: { strict?: boolean }) => {
         old = 987.654;
         now = String(old);
       }
-      const diff = od.diff({ old, now });
+      const diff = controller.diff({ old, now });
       assert.isFalse(diff, "equal fail.");
     });
     it("diff", () => {
@@ -109,7 +109,7 @@ const testStrict = (options: { strict?: boolean }) => {
         old = 1234567;
         now = 2345678;
       }
-      const diff = od.diff({ old, now });
+      const diff = controller.diff({ old, now });
       if (diff) {
         assert.isOk(diff.add === undefined, "diff.add");
         assert.isOk(diff.chg === now, "diff.chg");
@@ -131,7 +131,7 @@ const testStrict = (options: { strict?: boolean }) => {
         old = false;
         now = "false";
       }
-      const diff = od.diff({ old, now });
+      const diff = controller.diff({ old, now });
       assert.isFalse(diff, "equal fail.");
     });
     it("diff", () => {
@@ -143,7 +143,7 @@ const testStrict = (options: { strict?: boolean }) => {
         old = true;
         now = false;
       }
-      const diff = od.diff({ old, now });
+      const diff = controller.diff({ old, now });
       if (diff) {
         assert.isOk(diff.add === undefined, "diff.add");
         assert.isOk(diff.chg === now, "diff.chg");
@@ -162,14 +162,14 @@ const testStrict = (options: { strict?: boolean }) => {
       let old, now;
       old = new Date(dt.toISOString());
       now = new Date(dt.toISOString());
-      const diff = od.diff({ old, now });
+      const diff = controller.diff({ old, now });
       assert.isFalse(diff, "equal fail.");
     });
     it("diff", () => {
       let old, now;
       old = new Date(dt.toISOString());
       now = new Date();
-      const diff = od.diff({ old, now });
+      const diff = controller.diff({ old, now });
       if (diff) {
         assert.isOk(diff.add === undefined, "diff.add");
         assert.isOk(diff.chg === now, "diff.chg");
@@ -186,13 +186,13 @@ const testStrict = (options: { strict?: boolean }) => {
     it("equal", () => {
       const old = () => true;
       const now = old;
-      const diff = od.diff({ old, now });
+      const diff = controller.diff({ old, now });
       assert.isFalse(diff, "equal fail.");
     });
     it("diff", () => {
       const old = () => true;
       const now = () => false;
-      const diff = od.diff({ old, now });
+      const diff = controller.diff({ old, now });
       if (diff) {
         assert.isOk(diff.add === undefined, "diff.add");
         assert.isOk(diff.chg === now, "diff.chg");
