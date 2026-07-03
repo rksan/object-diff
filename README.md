@@ -204,9 +204,24 @@ if(result){
 }
 ```
 
+内部的に等号( `===` <-> `==` )を切り替えるだけです
+
+```ts
+if (strict) {
+  return old === now;
+} else {
+  return old == now;
+}
+```
+
 ##### `ignore?`
 
 テキスト比較で無視する要素のキーワード
+
+- `@type string[]`
+  - `"white-space"` 空白を無視
+  - `"case-insensitive"` 小・大文字の区別を無視
+  - `"new-line"` 改行を無視
 
 ###### `"white-space"`
 
@@ -219,6 +234,21 @@ const old = { a: " a a a " };
 const now = { a: "aaa" };
 
 const result = ObjectDiff({ ignore: ["white-space"] }).diff({ old, now });
+
+// no diff.
+console.log(result); // -> false
+```
+
+##### `"case-insensitive"`
+
+小文字・大文字の差異を無視
+
+```ts
+// [example.ts]
+const old = { a: "aaabbbccc" };
+const now = { a: "AAABBBCCC" };
+
+const result = ObjectDiff({ ignore: ["case-insensitive"] }).diff({ old, now });
 
 // no diff.
 console.log(result); // -> false
