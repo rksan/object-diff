@@ -1,7 +1,11 @@
 # Object-Diff
 
+オブジェクト間の差分を抽出する
+
+ℹ️ 対応クライアント
+
 - node(cjs)
-- browserijy(js)
+- browser(js)
 
 # usage
 
@@ -31,19 +35,19 @@ const result = controller.diff({ old, now });
 if (result) {
   // ---
   // exist diff.
-  console.log("added property", result.add);
+  console.log(result.add);
   // -> { a: "added-property" }
-  console.log("changed property", result.chg);
+  console.log(result.chg);
   // -> { b: "changed-property" }
-  console.log("deleted property", result.del);
+  console.log(result.del);
   // -> { c: "delete-property" }
-  console.log("diff old properties", result.old);
+  console.log(result.old);
   // ->
   // {
   //   b: "change-property",
   //   c: "delete-property",
   // }
-  console.log("diff now properties", diff.now);
+  console.log(diff.now);
   // ->
   // {
   //   a: "added-property",
@@ -56,7 +60,7 @@ if (result) {
 }
 ```
 
-様々なデータ型に対応
+ℹ️ その他、様々なデータ型に対応
 
 ```ts
 const ctrl = ObjectDiff();
@@ -88,8 +92,18 @@ const date = ctrl.diff({ old: new Date(), now: new Date() });
 
 # install
 
+- `node`
+
 ```bash
 npm i @rksan/ObjectDiff
+```
+
+- `browser`
+
+JavaScriptファイルは本リポジトリの`./bundle`にある
+
+```html
+<script src="./bundle/object-diff.min.js"></script>
 ```
 
 # Requirement
@@ -99,6 +113,8 @@ npm i @rksan/ObjectDiff
 # syntax
 
 ## ObjectDiff( options? ) => Controller
+
+差分比較関数を操作するオブジェクトを生成する
 
 ```ts
 const controller = ObjectDiff(options?: {
@@ -116,14 +132,17 @@ const controller = ObjectDiff(options?: {
 
 #### `options?`
 
+差分比較関数を操作するオブジェクトのオプション
+ℹ️`Controller.diff()`の動作を変更します
+
 ##### `output?`
 
 差分出力を変更するオプション
 
-- `@type` `"old"` | `"now"` | `"detail"`
-  - `old` 旧要素のみ
-  - `now` 新要素のみ
-  - `detail` 旧｜新、および追加｜変更｜削除
+- `@type` `string`
+  - `"old"` 旧要素のみ
+  - `"now"` 新要素のみ
+  - `"detail"` 旧｜新、および追加｜変更｜削除
 - `@default` `"detail"`
 
 ```ts
@@ -203,7 +222,7 @@ if(result){
 }
 ```
 
-内部的に等号( `===` <-> `==` )を切り替えるだけです
+ℹ️ 内部的に等号( `===` <-> `==` )を切り替えるだけです
 
 ```ts
 if (strict) {
@@ -377,7 +396,7 @@ if (result === true) {
 ```ts
 // [example.ts]
 
-// ... ( omission ) ...
+...
 
 const result = ctrl.diff({ old, now });
 
@@ -385,7 +404,7 @@ if (result) {
   // exist diff.
   const { add, chg, del, old, now } = result;
 
-  // ⚠ warn.
+  // ⚠ warn. ⚠
   // Since `boolean` and `null` are permitted as element values,
   // you must use `undefined` to determine whether a value exists.
   if (add === undefined) {
