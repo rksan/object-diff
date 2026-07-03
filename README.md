@@ -95,15 +95,27 @@ const date = ctrl.diff({ old: new Date(), now: new Date() });
 - `node`
 
 ```bash
-npm i @rksan/ObjectDiff
+npm i @rksan/object-diff
+```
+
+ℹ️ または[リリース](https://github.com/rksan/object-diff/releases) からDLしてローカルに配置
+
+```bash
+npm i ./rksan-object-diff-x.x.x.tgz
 ```
 
 - `browser`
 
-JavaScriptファイルは本リポジトリの`./bundle`にある
+ℹ️ JavaScriptファイルは本リポジトリの`./bundle`にある
 
 ```html
 <script src="./bundle/object-diff.min.js"></script>
+```
+
+❌ モジュールとしては使えません
+
+```html
+<script type="module" src="./bundle/object-diff.min.js"></script>
 ```
 
 # Requirement
